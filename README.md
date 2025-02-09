@@ -16,7 +16,7 @@ Sistema de gerenciamento para Musicoterapeutas desenvolvido com Next.js, TypeScr
 - Next.js 14
 - TypeScript
 - Tailwind CSS
-- Prisma ORM
+- Prisma ORM com SQLite
 - NextAuth.js
 - PDF Generation
 
@@ -31,7 +31,11 @@ npm install
 ```bash
 cp .env.example .env.local
 ```
-4. Execute o projeto:
+4. Execute o setup do banco de dados:
+```bash
+npm run setup
+```
+5. Execute o projeto:
 ```bash
 npm run dev
 ```
@@ -43,24 +47,21 @@ npm run dev
 3. Configure as seguintes variáveis de ambiente no Netlify (Settings > Build & Deploy > Environment variables):
 
 ```
-DATABASE_URL="sua-url-do-banco-de-dados-supabase"
-DIRECT_URL="sua-url-direta-do-banco-de-dados-supabase"
-NEXTAUTH_URL="url-do-seu-site-no-netlify"
+PRISMA_SQLITE_DB_PATH="file:./.next/sqlite/prisma.db"
+NEXTAUTH_URL="https://seu-site.netlify.app"
 NEXTAUTH_SECRET="sua-chave-secreta"
-NEXT_PUBLIC_SUPABASE_URL="sua-url-do-supabase"
-NEXT_PUBLIC_SUPABASE_ANON_KEY="sua-chave-anonima-do-supabase"
 ```
 
-4. Certifique-se de que as URLs do banco de dados (DATABASE_URL e DIRECT_URL) estejam corretas e acessíveis
+4. O script de setup do SQLite será executado automaticamente durante o build
 5. Deploy o projeto no Netlify
 
 ### Troubleshooting
 
-Se encontrar erros de conexão com o banco de dados:
+Se encontrar erros de banco de dados:
 
-1. Verifique se as credenciais do Supabase estão corretas
-2. Confirme se o IP do Netlify está liberado no Supabase
-3. Verifique se as variáveis de ambiente estão configuradas corretamente
+1. Verifique se o diretório .next/sqlite existe e tem permissões corretas
+2. Confirme se as variáveis de ambiente estão configuradas corretamente
+3. Verifique os logs do build no Netlify para possíveis erros
 4. Teste a conexão localmente antes do deploy
 
 ## Licença

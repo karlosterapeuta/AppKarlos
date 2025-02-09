@@ -1,5 +1,5 @@
 [build]
-  command = "mkdir -p .next/sqlite && chmod 777 .next/sqlite && npm run build"
+  command = "mkdir -p .next/sqlite && chmod -R 777 .next/sqlite && touch .next/sqlite/prisma.db && chmod 666 .next/sqlite/prisma.db && npm run build"
   publish = ".next"
   functions = "netlify/functions"
 
@@ -52,3 +52,6 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[build.environment.SQLITE_DB_PATH]
+  value = ".next/sqlite/prisma.db"

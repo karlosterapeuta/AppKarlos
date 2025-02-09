@@ -7,9 +7,14 @@
   NODE_VERSION = "20.10.0"
   NPM_FLAGS = "--no-audit --no-fund"
   NEXT_TELEMETRY_DISABLED = "1"
+  PRISMA_SQLITE_DB_PATH = ".netlify/sqlite/prisma.db"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/*"

@@ -1,5 +1,5 @@
 [build]
-  command = "mkdir -p .next/sqlite && chmod -R 777 .next/sqlite && touch .next/sqlite/prisma.db && chmod 666 .next/sqlite/prisma.db && npm run build"
+  command = "mkdir -p .next/sqlite && touch .next/sqlite/prisma.db && npm run build"
   publish = ".next"
   functions = "netlify/functions"
 
@@ -7,6 +7,7 @@
   NODE_VERSION = "20.10.0"
   NPM_FLAGS = "--no-audit --no-fund"
   NEXT_TELEMETRY_DISABLED = "1"
+  SQLITE_DB_PATH = ".next/sqlite/prisma.db"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -14,7 +15,6 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  included_files = [".next/sqlite/**"]
 
 [build.processing]
   skip_processing = false
@@ -52,6 +52,3 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-[build.environment.SQLITE_DB_PATH]
-  value = ".next/sqlite/prisma.db"

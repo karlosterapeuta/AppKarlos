@@ -1,5 +1,5 @@
 [build]
-  command = "mkdir -p .next/sqlite && chmod -R 777 .next/sqlite && npm run build"
+  command = "npm run build"
   publish = ".next"
   functions = "netlify/functions"
 
@@ -8,6 +8,8 @@
   NPM_FLAGS = "--no-audit --no-fund"
   NEXT_TELEMETRY_DISABLED = "1"
   DATABASE_URL = "file:./.next/sqlite/prisma.db"
+  NEXTAUTH_URL = "https://museterasistema.netlify.app"
+  NEXTAUTH_SECRET = "musicoterapia_secret_key_2024"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

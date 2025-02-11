@@ -1,5 +1,5 @@
 [build]
-  command = "mkdir -p .next/sqlite && chmod -R 777 .next/sqlite && npm run build"
+  command = "npm run build"
   publish = ".next"
   functions = "netlify/functions"
 

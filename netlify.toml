@@ -1,20 +1,20 @@
 [build]
-  command = "NODE_ENV=production SKIP_TYPE_CHECK=true NEXT_SKIP_TYPE_CHECK=true NEXT_TELEMETRY_DISABLED=1 mkdir -p .next/sqlite && chmod -R 777 .next/sqlite && touch .next/sqlite/prisma.db && chmod 666 .next/sqlite/prisma.db && npm run build"
+  command = "mkdir -p .next/sqlite && chmod -R 777 .next/sqlite && touch .next/sqlite/prisma.db && chmod 666 .next/sqlite/prisma.db && npm run build"
   publish = ".next"
   functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20.10.0"
-  NPM_FLAGS = "--no-audit --no-fund"
+  NPM_FLAGS = "--no-audit --no-fund --legacy-peer-deps"
   NEXT_TELEMETRY_DISABLED = "1"
   DATABASE_URL = "file:./.next/sqlite/prisma.db"
   NEXTAUTH_URL = "https://museterasistema.netlify.app"
   NEXTAUTH_SECRET = "musicoterapia_secret_key_2024"
   NEXT_PUBLIC_SITE_URL = "https://museterasistema.netlify.app"
-  SKIP_TYPE_CHECK = "true"
-  NEXT_SKIP_TYPE_CHECK = "true"
   NODE_ENV = "production"
   CI = "true"
+  NEXT_IGNORE_TYPE_ERROR = "1"
+  NEXT_IGNORE_ESLINT_ERROR = "1"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

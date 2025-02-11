@@ -38,13 +38,7 @@ async function main() {
 
   // Inicializar Prisma Client
   try {
-    const prisma = new PrismaClient({
-      datasources: {
-        db: {
-          url: `file:${dbPath}`
-        }
-      }
-    });
+    const prisma = new PrismaClient();
 
     console.log('Testando conexão com o banco de dados...');
     

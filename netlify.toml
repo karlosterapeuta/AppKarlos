@@ -1,5 +1,5 @@
 [build]
-  command = "NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 mkdir -p .next/sqlite && chmod -R 777 .next/sqlite && touch .next/sqlite/prisma.db && chmod 666 .next/sqlite/prisma.db && npm run build"
+  command = "npm run build"
   publish = ".next"
   functions = "netlify/functions"
 
@@ -13,12 +13,6 @@
   NEXT_PUBLIC_SITE_URL = "https://museterasistema.netlify.app"
   NODE_ENV = "production"
   CI = "true"
-  NEXT_IGNORE_TYPE_ERROR = "1"
-  NEXT_IGNORE_ESLINT_ERROR = "1"
-  NEXT_SHARP_PATH = "/tmp/node_modules/sharp"
-
-[build.processing]
-  skip_processing = true
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

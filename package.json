@@ -9,7 +9,7 @@
     "dev": "next dev",
     "setup": "node scripts/setup-sqlite.js",
     "init-db": "node scripts/init-db.js",
-    "build": "prisma generate && prisma migrate deploy && npm run setup && next build",
+    "build": "mkdir -p .next/sqlite && prisma generate && prisma migrate deploy && npm run setup && next build",
     "start": "next start -p $PORT",
     "lint": "next lint",
     "postinstall": "prisma generate"

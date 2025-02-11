@@ -44,13 +44,24 @@ function main() {
   console.log('- Diretório:', dirStats.mode.toString(8));
   console.log('- Arquivo:', fileStats.mode.toString(8));
 
-  // Executar migrations do Prisma
+  // Executar comando para garantir permissões no Linux
+  if (process.platform !== 'win32') {
+    try {
+      execSync(`chmod -R 777 ${dbDir}`);
+      execSync(`chmod 666 ${dbPath}`);
+      console.log('Permissões definidas via chmod');
+    } catch (error) {
+      console.warn('Aviso ao executar chmod:', error.message);
+    }
+  }
+
+  // Verificar se o arquivo é gravável
   try {
-    console.log('Executando Prisma migrations...');
-    execSync('npx prisma migrate deploy', { stdio: 'inherit' });
-    console.log('Migrations executadas com sucesso');
+    fs.accessSync(dbPath, fs.constants.W_OK);
+    console.log('Arquivo do banco de dados tem permissão de escrita');
   } catch (error) {
-    console.error('Erro ao executar migrations:', error.message);
+    console.error('Erro: Arquivo do banco de dados não tem permissão de escrita:', error.message);
+    process.exit(1);
   }
 
   console.log('Setup do SQLite concluído com sucesso');

@@ -9,6 +9,16 @@ function main() {
   console.log('Diretório base:', process.cwd());
   console.log('Configurando SQLite em:', dbDir);
 
+  // Remover arquivo existente se houver
+  if (fs.existsSync(dbPath)) {
+    try {
+      fs.unlinkSync(dbPath);
+      console.log('Arquivo de banco de dados existente removido');
+    } catch (error) {
+      console.warn('Aviso ao remover arquivo existente:', error.message);
+    }
+  }
+
   // Criar diretório se não existir
   if (!fs.existsSync(dbDir)) {
     fs.mkdirSync(dbDir, { recursive: true, mode: 0o777 });
@@ -23,10 +33,13 @@ function main() {
     console.warn('Aviso ao definir permissões do diretório:', error.message);
   }
 
-  // Criar ou verificar arquivo do banco de dados
-  if (!fs.existsSync(dbPath)) {
+  // Criar arquivo do banco de dados
+  try {
     fs.writeFileSync(dbPath, '', { mode: 0o666 });
     console.log('Arquivo do banco de dados criado');
+  } catch (error) {
+    console.error('Erro ao criar arquivo do banco de dados:', error.message);
+    process.exit(1);
   }
 
   // Definir permissões do arquivo

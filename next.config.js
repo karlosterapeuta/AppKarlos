@@ -7,6 +7,8 @@ const nextConfig = {
   },
   experimental: {
     largePageDataBytes: 128 * 100000,
+    optimizeCss: true,
+    optimizePackageImports: ['@heroicons/react', '@headlessui/react'],
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -24,7 +26,12 @@ const nextConfig = {
   generateEtags: true,
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   distDir: '.next',
-  cleanDistDir: true
+  cleanDistDir: true,
+  images: {
+    disableStaticImages: true,
+  },
+  optimizeFonts: false,
+  productionBrowserSourceMaps: false
 }
 
 module.exports = nextConfig

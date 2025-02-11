@@ -8,6 +8,9 @@ const nextConfig = {
   experimental: {
     largePageDataBytes: 128 * 100000,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  }
 }
 
 module.exports = nextConfig

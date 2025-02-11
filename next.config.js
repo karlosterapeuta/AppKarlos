@@ -5,11 +5,6 @@ const nextConfig = {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
   },
-  experimental: {
-    largePageDataBytes: 128 * 100000,
-    optimizeCss: true,
-    optimizePackageImports: ['@heroicons/react', '@headlessui/react'],
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -28,10 +23,8 @@ const nextConfig = {
   distDir: '.next',
   cleanDistDir: true,
   images: {
-    disableStaticImages: true,
-  },
-  optimizeFonts: false,
-  productionBrowserSourceMaps: false
+    unoptimized: true
+  }
 }
 
 module.exports = nextConfig

@@ -1,33 +1,24 @@
-'use client'
+import { ReactNode } from 'react'
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
+interface CardProps {
+  title?: string
+  description?: string
+  children?: ReactNode
+  className?: string
+}
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className
-    )}
-    {...props}
-  />
-))
-Card.displayName = "Card"
+export function Card({ title, description, children, className = '' }: CardProps) {
+  return (
+    <div className={`bg-white shadow-lg rounded-lg overflow-hidden ${className}`}>
+      <div className="p-6">
+        {title && <h3 className="text-xl font-semibold mb-2">{title}</h3>}
+        {description && (
+          <p className="text-gray-600 mb-4">{description}</p>
+        )}
+        {children}
+      </div>
+    </div>
+  )
+}
 
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("p-6", className)}
-    {...props}
-  />
-))
-CardContent.displayName = "CardContent"
-
-export { Card, CardContent }
+export default Card

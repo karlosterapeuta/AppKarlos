@@ -17,7 +17,14 @@ const nextConfig = {
   swcMinify: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
-  }
+  },
+  poweredByHeader: false,
+  reactStrictMode: false,
+  compress: true,
+  generateEtags: true,
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  distDir: '.next',
+  cleanDistDir: true
 }
 
 module.exports = nextConfig

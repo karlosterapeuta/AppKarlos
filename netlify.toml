@@ -22,10 +22,6 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    skipBuildCache = true
-    skipImageOptimization = true
-    skipTypeCheck = true
 
 [functions]
   directory = "netlify/functions"

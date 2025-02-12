@@ -1,10 +1,10 @@
 [build]
-  environment = { NODE_VERSION = "20.10.0" }
   command = "npm run prebuild && npm run build"
   publish = ".next"
   functions = "netlify/functions"
 
 [build.environment]
+  NODE_VERSION = "20.10.0"
   NPM_FLAGS = "--no-audit --no-fund --legacy-peer-deps"
   NEXT_TELEMETRY_DISABLED = "1"
   DATABASE_URL = "file:./.next/sqlite/prisma.db"
